@@ -9,6 +9,7 @@ Coverlays is a WordPress block plugin for Full Site Editing (FSE) themes that pr
 - Add multiple **color or gradient overlays** on top of a background image.
 - Supports **InnerBlocks** to nest other blocks inside the container.
 - Easy-to-use inspector controls for managing overlays and background images.
+- Full **internationalization (i18n)** support using WordPress translation system (`.pot`, `.po`, `.mo`).
 
 ---
 
