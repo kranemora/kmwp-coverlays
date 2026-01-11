@@ -1,0 +1,18 @@
+# Node dependencies
+node_modules/
+
+# Build output
+build/
+
+# VSCode settings
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs de npm
+npm-debug.log*
+
+# Package lock (opcional, si quieres fijar versiones exactas)
+package-lock.json

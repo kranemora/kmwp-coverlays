@@ -1,0 +1,78 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "kmwp/coverlays",
+  "title": "Coverlays",
+  "category": "media",
+  "editorScript": "file:./index.js",
+  "supports": {
+    "layout": {
+      "allowEditing": true,
+      "allowInheriting": true,
+      "default": {
+        "type": "constrained"
+      }
+    },
+    "align": [ "wide", "full" ],
+    "dimensions": {
+      "minHeight": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    }
+  },
+  "attributes": {
+    "layers": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "color": {
+            "type": "string"
+          },
+          "gradient": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "backgroundImage": {
+      "type": "object",
+      "default": null,
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "focalPoint": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          }
+        },
+        "repeat": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        },
+        "attachment": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
