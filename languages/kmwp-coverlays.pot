@@ -1,0 +1,138 @@
+# Copyright (C) 2026 Krane & Mora for Wordpress
+# This file is distributed under the MIT.
+msgid ""
+msgstr ""
+"Project-Id-Version: KMWP Coverlays 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kmwp-coverlays\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-01-11T07:21:31+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: kmwp-coverlays\n"
+
+#. Plugin Name of the plugin
+#: plugin.php
+msgid "KMWP Coverlays"
+msgstr ""
+
+#. Description of the plugin
+#: plugin.php
+msgid "Provides a container block that allows you to use a background image with multiple color and gradient overlay layers, similar to CSS multiple background-image rules, while supporting InnerBlocks."
+msgstr ""
+
+#. Author of the plugin
+#: plugin.php
+msgid "Krane & Mora for Wordpress"
+msgstr ""
+
+#: build/index.js:117
+#: build/index.js:137
+#: src/edit.js:97
+#: src/edit.js:115
+#: build/index.js:97
+#: build/index.js:115
+msgid "Background image"
+msgstr ""
+
+#: build/index.js:146
+#: src/edit.js:118
+#: build/index.js:118
+msgid "Untitled"
+msgstr ""
+
+#: build/index.js:163
+#: src/edit.js:135
+#: build/index.js:135
+msgid "Focal Point"
+msgstr ""
+
+#: build/index.js:174
+#: src/edit.js:145
+#: build/index.js:145
+msgid "Fixed background"
+msgstr ""
+
+#: build/index.js:184
+#: src/edit.js:156
+#: build/index.js:156
+msgid "Size"
+msgstr ""
+
+#: build/index.js:187
+#: src/edit.js:159
+#: build/index.js:159
+msgid "Cover"
+msgstr ""
+
+#: build/index.js:190
+#: src/edit.js:160
+#: build/index.js:160
+msgid "Contain"
+msgstr ""
+
+#: build/index.js:193
+#: src/edit.js:161
+#: build/index.js:161
+msgid "Auto"
+msgstr ""
+
+#: build/index.js:205
+#: build/index.js:211
+#: src/edit.js:171
+#: src/edit.js:175
+#: build/index.js:171
+#: build/index.js:175
+msgid "Repeat"
+msgstr ""
+
+#: build/index.js:208
+#: src/edit.js:174
+#: build/index.js:174
+msgid "No repeat"
+msgstr ""
+
+#: build/index.js:214
+#: src/edit.js:176
+#: build/index.js:176
+msgid "Horizontal repeat"
+msgstr ""
+
+#: build/index.js:217
+#: src/edit.js:177
+#: build/index.js:177
+msgid "Vertical repeat"
+msgstr ""
+
+#: build/index.js:244
+#: src/edit.js:197
+#: build/index.js:197
+msgid "Add background image"
+msgstr ""
+
+#: build/index.js:249
+#: src/edit.js:205
+#: build/index.js:205
+msgid "Overlays"
+msgstr ""
+
+#: build/index.js:264
+#: src/edit.js:219
+#: build/index.js:219
+msgid "Add overlay"
+msgstr ""
+
+#: build/index.js:273
+#: src/edit.js:228
+#: build/index.js:228
+msgid "Clear"
+msgstr ""
+
+#: build/block.json
+#: src/block.json
+msgctxt "block title"
+msgid "Coverlays"
+msgstr ""

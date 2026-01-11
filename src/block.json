@@ -5,6 +5,7 @@
   "title": "Coverlays",
   "category": "media",
   "editorScript": "file:./index.js",
+  "textdomain": "kmwp-coverlays",
   "supports": {
     "layout": {
       "allowEditing": true,

@@ -16,3 +16,6 @@ npm-debug.log*
 
 # Package lock (opcional, si quieres fijar versiones exactas)
 package-lock.json
+
+# Development tools
+wp-cli.phar

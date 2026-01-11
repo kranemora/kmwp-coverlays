@@ -14,6 +14,7 @@ import {
     ToggleControl,
     FocalPointPicker
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 import buildBackgroundStyle from './utils/buildBackgroundStyle';
 
 const edit = ({ attributes, setAttributes }) => {
@@ -54,7 +55,7 @@ const edit = ({ attributes, setAttributes }) => {
     const hasLayers = layers.length > 0;
 
     const settings = layers.map((layer, index) => ({
-        label: `Overlay ${index + 1}`,
+        label: __(`Overlay ${index + 1}`, 'kmwp-coverlays'),
         colorValue: layer.color,
         gradientValue: layer.gradient,
         colors,
@@ -93,7 +94,7 @@ const edit = ({ attributes, setAttributes }) => {
     return (
         <>
             <InspectorControls>
-                <PanelBody title="Background image" initialOpen={true}>
+                <PanelBody title={__('Background image', 'kmwp-coverlays')} initialOpen={true}>
                     {backgroundImage?.url ? (
                         <>
                             <div style={{ 
@@ -111,10 +112,10 @@ const edit = ({ attributes, setAttributes }) => {
                                 }}>
                                     <img
                                         src={backgroundImage.url}
-                                        alt=""
+                                        alt={ backgroundImage.title || __('Background image', 'kmwp-coverlays') }
                                         style={{ width: '20px', height: '20px', borderRadius: '50%', objectFit: 'cover', marginRight: '8px' }}
                                     />
-                                    <span>{backgroundImage.title || 'Sin título'}</span>
+                                    <span>{backgroundImage.title || __('Untitled', 'kmwp-coverlays')}</span>
                                 </span>
                                 <Button onClick={removeImage}>
                                     <svg 
@@ -131,7 +132,7 @@ const edit = ({ attributes, setAttributes }) => {
                             </div>
 
                             <FocalPointPicker
-                                label="Focal Point"
+                                label={__('Focal Point', 'kmwp-coverlays')}
                                 url={backgroundImage.url}
                                 value={backgroundImage.focalPoint}
                                 onChange={(focalPoint) =>
@@ -141,7 +142,7 @@ const edit = ({ attributes, setAttributes }) => {
                             />
 
                             <ToggleControl
-                                label="Fixed background"
+                                label={__('Fixed background', 'kmwp-coverlays')}
                                 checked={backgroundImage.attachment === 'fixed'}
                                 onChange={(value) =>
                                     setAttributes({
@@ -152,12 +153,12 @@ const edit = ({ attributes, setAttributes }) => {
                             />
 
                             <SelectControl
-                                label="Size"
+                                label={__('Size', 'kmwp-coverlays')}
                                 value={backgroundImage.size}
                                 options={[
-                                    { label: 'Cover', value: 'cover' },
-                                    { label: 'Contain', value: 'contain' },
-                                    { label: 'Auto', value: 'auto' },
+                                    { label: __('Cover', 'kmwp-coverlays'), value: 'cover' },
+                                    { label: __('Contain', 'kmwp-coverlays'), value: 'contain' },
+                                    { label: __('Auto', 'kmwp-coverlays'), value: 'auto' },
                                 ]}
                                 onChange={(size) =>
                                     setAttributes({ backgroundImage: { ...backgroundImage, size } })
@@ -167,13 +168,13 @@ const edit = ({ attributes, setAttributes }) => {
                             />
 
                             <SelectControl
-                                label="Repeat"
+                                label={__('Repeat', 'kmwp-coverlays')}
                                 value={backgroundImage.repeat}
                                 options={[
-                                    { label: 'No repeat', value: 'no-repeat' },
-                                    { label: 'Repeat', value: 'repeat' },
-                                    { label: 'Horizontal repeat', value: 'repeat-x' },
-                                    { label: 'Vertical repeat', value: 'repeat-y' },
+                                    { label: __('No repeat', 'kmwp-coverlays'), value: 'no-repeat' },
+                                    { label: __('Repeat', 'kmwp-coverlays'), value: 'repeat' },
+                                    { label: __('Horizontal repeat', 'kmwp-coverlays'), value: 'repeat-x' },
+                                    { label: __('Vertical repeat', 'kmwp-coverlays'), value: 'repeat-y' },
                                 ]}
                                 onChange={(repeat) =>
                                     setAttributes({ backgroundImage: { ...backgroundImage, repeat } })
@@ -193,7 +194,7 @@ const edit = ({ attributes, setAttributes }) => {
                                         onClick={open}
                                         style={{ textAlign: "center", width: "100%", display: "block", border: "1px #ddd solid" }}
                                     >
-                                        Add background image
+                                        {__('Add background image', 'kmwp-coverlays')}
                                     </Button>
                                 )}
                             />
@@ -201,7 +202,7 @@ const edit = ({ attributes, setAttributes }) => {
                     )}
                 </PanelBody>
                 <PanelColorGradientSettings
-                    title="Overlays"
+                    title={__('Overlays', 'kmwp-coverlays')}
                     settings={settings}
                 />
                 <div style={{ padding: '0 16px 16px' }}>
@@ -215,7 +216,7 @@ const edit = ({ attributes, setAttributes }) => {
                             border: (hasLayers ? "inherit" : "1px #ddd solid")
                         }}
                     >
-                        Add overlay
+                        {__('Add overlay', 'kmwp-coverlays')}
                     </Button>
                     {hasLayers && (<Button
                         variant="link"
@@ -224,7 +225,7 @@ const edit = ({ attributes, setAttributes }) => {
                         disabled={!hasEmptyLayers}
                         style={{ marginLeft: '8px' }}
                     >
-                        Clear
+                        {__('Clear', 'kmwp-coverlays')}
                     </Button>)}
                 </div>
             </InspectorControls>
