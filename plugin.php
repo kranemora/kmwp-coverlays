@@ -7,7 +7,7 @@
  * Version: 1.0.1
  * License: MIT
  * License URI: https://opensource.org/licenses/MIT
- * Requires at least: 6.0 //Mínima versión de wordpress requerida
+ * Requires at least: 6.0
  * Requires PHP: 7.4
  * Text Domain: kmwp-coverlays
  * Domain Path: /languages
@@ -31,7 +31,12 @@ function kmwp_coverlays_render_block( $attributes, $content ) {
 
     $layers = $attributes['layers'] ?? [];
     $overlay_layers = kmwp_coverlays_build_overlay_layers( $layers );
-    $sources = kmwp_coverlays_resolve_image_sources( $image_id );
+    
+    $breakpoints = kmwp_coverlays_get_default_breakpoints();
+    $breakpoints = apply_filters( 'kmwp_coverlays_breakpoints', $breakpoints, $attributes );
+
+    $sources = kmwp_coverlays_resolve_image_sources( $image_id, $breakpoints );
+    $sources = apply_filters( 'kmwp_coverlays_image_sizes', $sources, $attributes ); 
 
     if ( empty( $sources ) ) {
         return $content;
@@ -47,8 +52,8 @@ function kmwp_coverlays_render_block( $attributes, $content ) {
         $background_properties
     );
 
-    //error_log( 'CSS COVERLAYS:' );
-    //error_log( $css );
+    $css = apply_filters( 'kmwp_coverlays_css', $css, $attributes );
+
     wp_add_inline_style( 'kmwp-coverlays-style', $css );
 
     return $content;
@@ -69,7 +74,7 @@ add_action('init', 'kmwp_coverlays_register_block');
 function kmwp_coverlays_register_style() {
     wp_register_style(
         'kmwp-coverlays-style',
-        false, // sin archivo físico
+        false,
         [],
         '1.0.0'
     );
@@ -104,9 +109,13 @@ function kmwp_coverlays_get_default_breakpoints() {
     ];
 }
 
-function kmwp_coverlays_resolve_image_sources( int $attachment_id ): array {
+function kmwp_coverlays_resolve_image_sources( int $attachment_id, array $breakpoints = [] ): array {
 
-    $breakpoints = kmwp_coverlays_get_default_breakpoints();
+
+    if ( empty( $breakpoints ) ) {
+        $breakpoints = kmwp_coverlays_get_default_breakpoints();
+    }
+
     $sources = [];
 
     foreach ( $breakpoints as $max_width => $size ) {
