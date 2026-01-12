@@ -17,10 +17,14 @@ import {
 import { __, sprintf } from '@wordpress/i18n';
 import buildBackgroundStyle from './utils/buildBackgroundStyle';
 
-const edit = ({ attributes, setAttributes }) => {
-    const { layers = [], backgroundImage } = attributes;
+const edit = ({ attributes, setAttributes, clientId }) => {
+    const { layers = [], backgroundImage, blockId } = attributes;
     const [colors = []] = useSettings('color.palette');
     const [gradients = []] = useSettings('color.gradients');
+
+    if (!blockId) {
+        setAttributes({ blockId: clientId.slice(0,8) });
+    }
 
     const updateColor = (index, value) => {
         const nextLayers = [...layers];

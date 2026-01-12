@@ -26,6 +26,10 @@
     }
   },
   "attributes": {
+    "blockId": {
+        "type": "string",
+        "default": ""
+    },
     "layers": {
       "type": "array",
       "default": [],

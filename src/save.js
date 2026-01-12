@@ -2,14 +2,13 @@ import {
     InnerBlocks,
     useBlockProps
 } from '@wordpress/block-editor';
-import buildBackgroundStyle from './utils/buildBackgroundStyle';
 
 const save = ({ attributes }) => {
 
-    const blockStyle = buildBackgroundStyle(attributes);
+    const { blockId } = attributes;
     
     return (
-        <div {...useBlockProps.save({ style: blockStyle })}>
+        <div {...useBlockProps.save({ className: `coverlays-block-${blockId}` })}>
             <InnerBlocks.Content />
         </div>
     );
