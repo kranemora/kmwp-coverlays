@@ -4,7 +4,7 @@ Tags: block, gutenberg, background, overlays, FSE
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -43,10 +43,7 @@ Yes. KMWP Coverlays is fully internationalized and ready for translations.
 
 == Changelog ==
 
+= 1.0.1 =
+* Improved background image handling with responsive CSS breakpoints.
 = 1.0.0 =
 * Initial public release
-
-== Upgrade Notice ==
-
-= 1.0.0 =
-Initial release.
