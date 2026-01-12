@@ -1,4 +1,4 @@
-# Krane & Mora for Wodpress - Coverlays
+# Krane & Mora for Wordpress - Coverlays
 
 Coverlays is a WordPress block plugin for Full Site Editing (FSE) themes that provides a **container block** allowing you to use a **background image with multiple color and gradient overlay layers**, similar to CSS multiple `background-image` rules, while supporting **InnerBlocks**.
 
@@ -10,6 +10,7 @@ Coverlays is a WordPress block plugin for Full Site Editing (FSE) themes that pr
 - Supports **InnerBlocks** to nest other blocks inside the container.
 - Easy-to-use inspector controls for managing overlays and background images.
 - Full **internationalization (i18n)** support using WordPress translation system (`.pot`, `.po`, `.mo`).
+- Fully **responsive background images**, optimized for different screen sizes.
 
 ---
 

@@ -23,6 +23,7 @@ It provides a **container block** that lets you combine a background image with 
 * Full InnerBlocks support
 * Compatible with Full Site Editing (FSE)
 * Internationalization (i18n) ready
+* Fully **responsive background images**, optimized for different screen sizes.
 
 == Installation ==
 
