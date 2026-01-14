@@ -4,7 +4,7 @@ Tags: block, gutenberg, background, overlays, FSE
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -25,6 +25,7 @@ It provides a **container block** that lets you combine a background image with 
 * Internationalization (i18n) ready
 * Fully **responsive background images**, optimized for different screen sizes
 * **Extensible via WordPress filters** to modify breakpoints, image URLs, and final CSS
+* Option to **use the Featured Image** of the post as the background image.
 
 == Filters / Extensibility ==
 
@@ -86,6 +87,9 @@ Yes. KMWP Coverlays is fully internationalized and ready for translations.
 
 == Changelog ==
 
+= 1.2.0 =
+* Added option to **use the post's Featured Image** as the background image.
+'
 = 1.1.0 =
 * Added filters for extensibility: `kmwp_coverlays_breakpoints`, `kmwp_coverlays_image_sizes`, `kmwp_coverlays_css`.
 

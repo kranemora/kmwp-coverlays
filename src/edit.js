@@ -39,7 +39,7 @@ const edit = ({ attributes, setAttributes, clientId }) => {
         const featuredId = select('core/editor').getEditedPostAttribute('featured_media');
         if (!featuredId) return null;
         return select('core').getEntityRecord('postType', 'attachment', featuredId);
-    }, []); // [] asegura que solo se recalcula cuando se monta
+    }, []);
 
     const hasFeaturedImage = useSelect(
         (select) => {
@@ -235,7 +235,6 @@ const edit = ({ attributes, setAttributes, clientId }) => {
                         <>
                             {hasFeaturedImage ? (
                                 <>
-                                    {/* BOTÓN CON DROPDOWN */}
                                     <Dropdown
                                         style={{ display: "block" }}
                                         renderToggle={({ isOpen, onToggle }) => (
@@ -314,7 +313,6 @@ const edit = ({ attributes, setAttributes, clientId }) => {
                                 </>
                             ) : (
                                 <>
-                                    {/* BOTÓN SIMPLE (NO hay featured image) */}
                                     <MediaUploadCheck>
                                         <MediaUpload
                                             onSelect={onSelectImage}

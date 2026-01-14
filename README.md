@@ -12,6 +12,7 @@ Coverlays is a WordPress block plugin for Full Site Editing (FSE) themes that pr
 - Full **internationalization (i18n)** support using WordPress translation system (`.pot`, `.po`, `.mo`).
 - Fully **responsive background images**, optimized for different screen sizes.
 - **Extensible via WordPress filters**, allowing modification of breakpoints, image URLs, and final CSS.
+- Option to **use the Featured Image** of the post as the background image.
 
 ---
 
