@@ -288,7 +288,7 @@ const edit = ({ attributes, setAttributes, clientId }) => {
                                                             onClose();
                                                         }}
                                                     >
-                                                        {__("Open featured image", "kmwp-coverlays")}
+                                                        {__("Use Featured Image", "kmwp-coverlays")}
                                                     </MenuItem>
                                                 </MenuGroup>
 
