@@ -1,10 +1,10 @@
 === KMWP Coverlays ===
-Contributors: Krane & Mora for WordPress
+Contributors: kranemora
 Tags: block, gutenberg, background, overlays, FSE
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -24,50 +24,59 @@ It provides a **container block** that lets you combine a background image with 
 * Compatible with Full Site Editing (FSE)
 * Internationalization (i18n) ready
 * Fully **responsive background images**, optimized for different screen sizes
-* **Extensible via WordPress filters** to modify breakpoints, image URLs, and final CSS
-* Option to **use the Featured Image** of the post as the background image.
+* Automatic **high-density (2x / 3x) image support** for Retina and Hi-DPI displays.
+* Breakpoints generated automatically from available image sizes and applied via CSS media queries.
+* **Extensible via WordPress filters** to modify resolved image sources and final generated CSS.
+* Optionally **use the Featured Image** of the post as the background image.
 
 == Filters / Extensibility ==
 
 KMWP Coverlays provides filters to allow developers to modify block behavior:
 
-* **kmwp_coverlays_breakpoints**  
-  - Modify or add CSS breakpoints used for responsive background images.  
-  - Parameters: `$breakpoints` (associative array), `$attributes` (block attributes).  
-  - Return: modified breakpoints array.  
-  - Example:
-    ```
-    add_filter( 'kmwp_coverlays_breakpoints', function( $breakpoints, $attributes ) {
-        $breakpoints[500] = 'medium_large';
-        return $breakpoints;
-    }, 10, 2 );
-    ```
-
 * **kmwp_coverlays_image_sizes**  
   - Modify the URLs of background images per breakpoint before generating CSS.  
   - Parameters: `$sources` (associative array), `$attributes` (block attributes).  
   - Return: modified sources array.  
-  - Example:
-    ```
-    add_filter( 'kmwp_coverlays_image_sizes', function( $sources, $attributes ) {
-        foreach ( $sources as $width => &$url ) {
-            $url .= '?v=test';
-        }
-        return $sources;
-    }, 10, 2 );
-    ```
+  - **Example:** Remove useless sizes
+
+        add_filter( 'kmwp_coverlays_image_sizes', function ( $sources ) {
+
+            $min_width = 360;
+
+            return array_filter(
+                $sources,
+                fn( $url, $width ) => $width >= $min_width,
+                ARRAY_FILTER_USE_BOTH
+            );
+        } );
+  - **Example:** Fallback when all sizes are filtered out
+
+        add_filter( 'kmwp_coverlays_image_sizes', function ( $sources ) {
+
+            $min_width = 360;
+            $filtered = array_filter(
+                $sources,
+                fn( $url, $width ) => $width >= $min_width,
+                ARRAY_FILTER_USE_BOTH
+            );
+
+            // fallback: if everything was filtered out, keep the largest size
+            if (empty($filtered)) {
+                $filtered = [max(array_keys($sources)) => end($sources)];
+            }
+
+            return $filtered;
+        } );
 
 * **kmwp_coverlays_css**  
   - Modify the final CSS string generated for the block before output.  
   - Parameters: `$css` (string), `$attributes` (block attributes).  
   - Return: modified CSS string.  
-  - Example:
-    ```
-    add_filter( 'kmwp_coverlays_css', function( $css, $attributes ) {
-        $css .= "\n/* Custom CSS added via filter */";
-        return $css;
-    }, 10, 2 );
-    ```
+  - **Example:** Custom CSS
+        add_filter( 'kmwp_coverlays_css', function( $css, $attributes ) {
+            $css .= "\n/* Custom CSS added via filter */";
+            return $css;
+        }, 10, 2 );
 
 == Installation ==
 
@@ -87,9 +96,13 @@ Yes. KMWP Coverlays is fully internationalized and ready for translations.
 
 == Changelog ==
 
+= 1.3.0 =
+* Added high-density (2x / 3x) image support.
+* Fixed featured image sync when replaced or removed.
+
 = 1.2.0 =
 * Added option to **use the post's Featured Image** as the background image.
-'
+
 = 1.1.0 =
 * Added filters for extensibility: `kmwp_coverlays_breakpoints`, `kmwp_coverlays_image_sizes`, `kmwp_coverlays_css`.
 

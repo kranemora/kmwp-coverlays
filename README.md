@@ -11,8 +11,10 @@ Coverlays is a WordPress block plugin for Full Site Editing (FSE) themes that pr
 - Easy-to-use inspector controls for managing overlays and background images.
 - Full **internationalization (i18n)** support using WordPress translation system (`.pot`, `.po`, `.mo`).
 - Fully **responsive background images**, optimized for different screen sizes.
-- **Extensible via WordPress filters**, allowing modification of breakpoints, image URLs, and final CSS.
-- Option to **use the Featured Image** of the post as the background image.
+- Automatic **high-density (2x / 3x) image support** for Retina and Hi-DPI displays.
+- Breakpoints generated automatically from available image sizes and applied via CSS media queries.
+- **Extensible via WordPress filters**, allowing modification of resolved image sources and final generated CSS.
+- Optionally **use the Featured Image** of the post as the background image.
 
 ---
 
@@ -20,34 +22,43 @@ Coverlays is a WordPress block plugin for Full Site Editing (FSE) themes that pr
 
 KMWP Coverlays provides WordPress filters to allow themes and plugins to modify block behavior:
 
-- **`kmwp_coverlays_breakpoints`**  
-  - **Description:** Modify or add CSS breakpoints used for responsive background images.  
-  - **Parameters:**  
-    1. `$breakpoints` — associative array of breakpoints (`max-width => image size`).  
-    2. `$attributes` — block attributes array.  
-  - **Return:** Modified breakpoints array.  
-  - **Example:**
-    ```php
-    add_filter( 'kmwp_coverlays_breakpoints', function( $breakpoints, $attributes ) {
-        $breakpoints[500] = 'medium_large'; // Add custom breakpoint
-        return $breakpoints;
-    }, 10, 2 );
-    ```
-
 - **`kmwp_coverlays_image_sizes`**  
-  - **Description:** Modify the URLs of background images per breakpoint before generating CSS.  
+  - **Description:** Modify the resolved background image sources (width => URL) before CSS generation.  
   - **Parameters:**  
     1. `$sources` — associative array of image URLs (`max-width => URL`).  
     2. `$attributes` — block attributes array.  
   - **Return:** Modified sources array.  
-  - **Example:**
+  - **Example:** Remove useless sizes
     ```php
-    add_filter( 'kmwp_coverlays_image_sizes', function( $sources, $attributes ) {
-        foreach ( $sources as $width => &$url ) {
-            $url .= '?v=test'; // Append query string for testing
+    add_filter( 'kmwp_coverlays_image_sizes', function ( $sources ) {
+
+        $min_width = 360;
+
+        return array_filter(
+            $sources,
+            fn( $url, $width ) => $width >= $min_width,
+            ARRAY_FILTER_USE_BOTH
+        );
+    });
+    ```
+  - **Example:** Fallback when all sizes are filtered out
+    ```php
+    add_filter( 'kmwp_coverlays_image_sizes', function ( $sources ) {
+
+        $min_width = 360;
+        $filtered = array_filter(
+            $sources,
+            fn( $url, $width ) => $width >= $min_width,
+            ARRAY_FILTER_USE_BOTH
+        );
+
+        // fallback: if everything was filtered out, keep the largest size
+        if (empty($filtered)) {
+            $filtered = [max(array_keys($sources)) => end($sources)];
         }
-        return $sources;
-    }, 10, 2 );
+
+        return $filtered;
+    } );
     ```
 
 - **`kmwp_coverlays_css`**  
@@ -56,7 +67,7 @@ KMWP Coverlays provides WordPress filters to allow themes and plugins to modify 
     1. `$css` — string of CSS rules for the block.  
     2. `$attributes` — block attributes array.  
   - **Return:** Modified CSS string.  
-  - **Example:**
+  - **Example:** Custom CSS
     ```php
     add_filter( 'kmwp_coverlays_css', function( $css, $attributes ) {
         $css .= "\n/* Custom CSS added via filter */";

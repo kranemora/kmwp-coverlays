@@ -4,7 +4,7 @@
  * Plugin Name: KMWP Coverlays
  * Description: Provides a container block that allows you to use a background image with multiple color and gradient overlay layers, similar to CSS multiple background-image rules, while supporting InnerBlocks.
  * Author: Krane & Mora for Wordpress
- * Version: 1.2.0
+ * Version: 1.3.0
  * License: MIT
  * License URI: https://opensource.org/licenses/MIT
  * Requires at least: 6.0
